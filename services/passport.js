@@ -12,7 +12,7 @@ passport.deserializeUser((id, done) => {
     User.findById(id)
         .then(user => {
             done(null, user);
-        });
+    });
 });
 
 passport.use(new GoogleStrategy({
@@ -28,6 +28,6 @@ passport.use(new GoogleStrategy({
                 new User({ googleId: profile.id }).save()
                     .then(user => done(null, user));
             }
-        });
+        }).catch(console.log('oops'));
 })
 );
